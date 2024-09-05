@@ -135,13 +135,13 @@ enable password [your-password]
     <h3>Task 2: Create VLANs</h3>
     <p>Create VLANs for the different departments: HR (VLAN 10), IT (VLAN 20), and Finance (VLAN 30).</p>
     <pre>
-vlan 10
-name HR
-vlan 20
-name IT
-vlan 30
-name Finance
-exit
+            vlan 10
+            name HR
+            vlan 20
+            name IT
+            vlan 30
+            name Finance
+            exit
     </pre>
     <p class="flag">Flag 2: Use correct <commands> to configure all the vlans.</p>
     <input type="textarea" id="flag2" class="textbox" placeholder="Enter Flag 2">
@@ -203,6 +203,17 @@ line vty 0 4
     <p class="flag">Flag 7: Use correct <commands> to prevent the brute force attacks.</p>
     <input type="text" id="flag7" class="textbox" placeholder="Enter Flag 7">
     <button class="btn" onclick="checkFlag(7, 'login block-for 120 attempts 3 within 60')">Submit Flag</button>
+</div>
+
+<div id="task8" class="task hidden">
+    <h3>Task 8: Analyze the packet</h3>
+    <p>You have intercepted some network traffic in the form of a packet capture file (network_traffic.pcap). Your task is to find the port and protocol used by a specific IP address in the network.</p>
+    <pre>
+            What is the port number and the protocol used by the IP address 192.168.1.100?
+    </pre>
+    <p class="flag">Flag 8: format {port_protocol}</p>
+    <input type="text" id="flag7" class="textbox" placeholder="Enter Flag 7">
+    <button class="btn" onclick="checkFlag(8, '80_HTTP')">Submit Flag</button>
 </div>
 
 </body>
