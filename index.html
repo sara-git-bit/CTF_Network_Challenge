@@ -126,7 +126,7 @@
     <pre>
 enable password [your-password]
     </pre>
-    <p class="flag">Flag 1: Use correct <commands> to verify the encryption.</p>
+    <p class="flag">Flag 1: Use the correct <commands> to verify the encryption.</p>
     <input type="text" id="flag1" class="textbox" placeholder="Enter Flag 1">
     <button class="btn" onclick="checkFlag(1, 'service password-encryption')">Submit Flag</button>
 </div>
@@ -143,7 +143,7 @@ enable password [your-password]
             name Finance
             exit
     </pre>
-    <p class="flag">Flag 2: Use correct <commands> to configure all the vlans.</p>
+    <p class="flag">Flag 2: Use the correct <commands> to configure all the vlans.</p>
     <input type="textarea" id="flag2" class="textbox" placeholder="Enter Flag 2">
     <button class="btn" onclick="checkFlag(2, 'vlan 10 name HR vlan 20 name IT vlan 30 name Finance')">Submit Flag</button>
 </div>
@@ -155,14 +155,14 @@ enable password [your-password]
 interface range f0/1-2 , interface range f0/3-4, interface range f0/5-6
 switchport mode [type of mode]
     </pre>
-    <p class="flag">Flag 3: Use correct <commands> to configure the access.</p>
+    <p class="flag">Flag 3: Use the correct <commands> to configure the access.</p>
     <input type="textarea" id="flag3" class="textbox" placeholder="Enter Flag 3">
     <button class="btn" onclick="checkFlag(3, 'switchport mode access switchport access vlan 10 switchport mode access switchport access vlan 20 switchport mode access switchport access vlan 30')">Submit Flag</button>
 </div>
 
 <div id="task4" class="task hidden">
     <h3>Task 4: Trunk Configuration and Access Control</h3>
-    <p>Configure trunk ports to allow specific VLANs and deny others.</p>
+    <p>Configure trunk ports to allow specific VLAN 10 and 20 and deny VLAN 30.</p>
     <pre>
 interface GigabitEthernet0/1
     </pre>
@@ -217,8 +217,8 @@ line vty 0 4
         Source Port: 49152
         Destination Port: 80
         HTTP Request: GET /index.html HTTP/1.1
-
-            What is the port number and the protocol used by the IP address 192.168.1.100?
+        
+        What is the port number and the protocol used by the IP address 192.168.1.100?
     </pre>
     <p class="flag">Flag 8: format {port_protocol}</p>
     <input type="text" id="flag8" class="textbox" placeholder="Enter Flag 8">
