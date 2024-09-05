@@ -111,7 +111,7 @@ name Finance
 exit
     </pre>
     <p class="flag">Flag 2: Use correct <commands> to configure all the vlans.</p>
-    <input type="text" id="flag2" class="textbox" placeholder="Enter Flag 2">
+    <input type="textarea" id="flag2" class="textbox" placeholder="Enter Flag 2">
     <button class="btn" onclick="checkFlag(2, 'vlan 10 name HR vlan 20 name IT vlan 30 name Finance')">Submit Flag</button>
 </div>
 
@@ -122,8 +122,8 @@ exit
 switchport mode [type of mode]
     </pre>
     <p class="flag">Flag 3: Use correct <commands> to configure the access.</p>
-    <input type="text" id="flag3" class="textbox" placeholder="Enter Flag 3">
-    <button class="btn" onclick="checkFlag(3, 'int range f0/1-2 switchport mode access switchport access vlan 10 int range f0/4-5 switchport mode access switchport access vlan 20 int range f0/6-7 switchport mode access switchport access vlan 30 ')">Submit Flag</button>
+    <input type="textarea" id="flag3" class="textbox" placeholder="Enter Flag 3">
+    <button class="btn" onclick="checkFlag(3, 'int range f0/1-2 switchport mode access switchport access vlan 10 int range f0/4-5 switchport mode access switchport access vlan 20 int range f0/6-7 switchport mode access switchport access vlan 30')">Submit Flag</button>
 </div>
 
 <div id="task4" class="task hidden">
