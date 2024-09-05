@@ -7,36 +7,62 @@
     <title>Capture the Flag (CTF) Challenge: Network Troubleshooting and Configuration</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
             line-height: 1.6;
             margin: 20px;
-            background-color: #f4f4f4;
+            background-color: #0d1b2a;
+            color: #e0e1dd;
         }
         h1, h2, h3 {
-            color: #333;
+            color: #ffcc00;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
         }
         pre {
-            background-color: #eee;
-            padding: 10px;
-            border: 1px solid #ccc;
+            background-color: #1b263b;
+            color: #c5c6c7;
+            padding: 15px;
+            border: 2px solid #4a6fa5;
+            border-radius: 10px;
             overflow: auto;
         }
         .task {
-            background-color: #fff;
-            border: 1px solid #ccc;
+            background-color: #1b263b;
+            border: 2px solid #4a6fa5;
             padding: 20px;
             margin-bottom: 20px;
-            border-radius: 5px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
         }
         .flag {
-            color: #d9534f;
+            color: #66fcf1;
             font-weight: bold;
+            font-size: 1.1em;
+        }
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #c5c6c7;
+            font-size: 0.9em;
+        }
+        .network-theme {
+            background-image: url('https://i.imgur.com/3rTSe1b.png');
+            background-size: cover;
+            background-blend-mode: multiply;
+            padding: 50px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 
-<h1>Capture the Flag (CTF) Challenge: Network Troubleshooting and Configuration</h1>
+<div class="network-theme">
+    <h1>Capture the Flag (CTF) Challenge</h1>
+    <h2>Network Troubleshooting and Configuration</h2>
+</div>
 
 <p>Welcome to the CTF Challenge! Your goal is to complete the following network configuration and troubleshooting tasks on a Cisco-like switch and router environment. Each completed task will provide you with a flag that will help you unlock the next challenge.</p>
 
@@ -124,6 +150,10 @@ login block-for 120 attempts 3 within 60
     </pre>
     <p class="flag">Flag 7: Verify the login settings using <code>show login</code>.</p>
 </div>
+
+<footer>
+    <p>&copy; 2024 Network CTF Challenge. All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>
