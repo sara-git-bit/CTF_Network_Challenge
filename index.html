@@ -166,7 +166,7 @@ switchport mode [type of mode]
     <pre>
 interface GigabitEthernet0/1
     </pre>
-    <p class="flag">Flag 4: Use correct <commands> to configure trunk.</p>
+    <p class="flag">Flag 4: Use the correct <commands> to configure trunk.</p>
     <input type="text" id="flag4" class="textbox" placeholder="Enter Flag 4">
     <button class="btn" onclick="checkFlag(4, 'switchport mode trunk switchport trunk allowed vlan 10,20 switchport trunk denied vlan 30')">Submit Flag</button>
 </div>
@@ -238,7 +238,7 @@ line vty 0 4
         [2024-09-05 14:12:46] - IP: 192.168.1.50 - Login attempt failed
         [2024-09-05 14:12:48] - IP: 192.168.1.50 - Login attempt failed
 
-            What is the IP address responsible for the brute-force attack?
+        What is the IP address responsible for the brute-force attack?
     </pre>
     <p class="flag">Flag 9: format {IP Address}</p>
     <input type="text" id="flag9" class="textbox" placeholder="Enter Flag 9">
@@ -286,28 +286,107 @@ line vty 0 4
 
            What is the misconfiguration preventing VLAN 10 and VLAN 20 from communicating?
     </pre>
-    <p class="flag">Flag 10: format {Iissue}</p>
+    <p class="flag">Flag 10: format {issue}</p>
     <input type="text" id="flag10" class="textbox" placeholder="Enter Flag 10">
     <button class="btn" onclick="checkFlag(10, 'vlan_pruning')">Submit Flag</button>
 </div>
 
-    <div id="task11" class="task hidden">
+<div id="task11" class="task hidden">
     <h3>Task 11: Detect a Man-in-the-Middle Attack</h3>
     <p>Your security team has noticed unusual activity on the network, where sensitive data seems to have been intercepted and modified during transmission. You suspect a Man-in-the-Middle (MITM) attack might be occurring. Your task is to analyze the network traffic logs and identify the attacker's IP address.</p>
     <pre>
       Switch# show running-config
       Frame 1: 60 bytes on wire (480 bits)
-    Source: Attacker (00:0a:95:9d:68:16)
-    Destination: Broadcast (ff:ff:ff:ff:ff:ff)
-    Protocol: ARP
-    ARP: Who has 192.168.1.1? Tell 192.168.1.100
-    [Duplicate IP address detected: 192.168.1.1 is also at 00:0a:95:9d:68:16]
+      Source: Attacker (00:0a:95:9d:68:16)
+      Destination: Broadcast (ff:ff:ff:ff:ff:ff)
+      Protocol: ARP
+      ARP: Who has 192.168.1.1? Tell 192.168.1.100
+      [Duplicate IP address detected: 192.168.1.1 is also at 00:0a:95:9d:68:16]
 
-           What is the IP address of the attacker??
+       What is the IP address of the attacker??
     </pre>
-    <p class="flag">Flag 11: format {Iissue}</p>
+    <p class="flag">Flag 11: format {issue}</p>
     <input type="text" id="flag11" class="textbox" placeholder="Enter Flag 11">
     <button class="btn" onclick="checkFlag(11, '192.168.1.100')">Submit Flag</button>
+</div>
+
+<div id="task12" class="task hidden">
+    <h3>Task 12: Secure the Switch Ports to Prevent Unauthorized Access</h3>
+    <p> You found out that the network devices switches has a lot of unused port. Open port can introduce to an attack called VLAN hopping attack. Your need to prevent this from happening</p>
+    <pre>
+      Switch# configure terminal
+      Switch(config)# interface fa0/1
+
+       What command that is used to disable an unused port?
+    </pre>
+    <p class="flag">Flag 12: format {commmand}</p>
+    <input type="text" id="flag12" class="textbox" placeholder="Enter Flag 12">
+    <button class="btn" onclick="checkFlag(12, 'shutdown')">Submit Flag</button>
+</div>
+
+<div id="task13" class="task hidden">
+    <h3>Task 13: Enable DHCP Snooping to Prevent Rogue DHCP Servers</h3>
+    <p> You found out that the network devices switches has a lot of unused port. Open port can introduce to an attack called VLAN hopping attack. Your need to prevent this from happening</p>
+    <pre>
+      Switch# configure terminal
+      Switch(config)# ip dhcp snooping
+      Switch(config)# ip dhcp snooping vlan 10
+      Switch(config)# interface gigabitEthernet 0/1
+      Switch(config-if)# ip dhcp snooping trust
+      Switch(config-if)# exit
+
+
+     What is the state of the DHCP snooping configuration on the switch?
+    </pre>
+    <p class="flag">Flag 13: format {vlan_trustedports}</p>
+    <input type="text" id="flag13" class="textbox" placeholder="Enter Flag 13">
+    <button class="btn" onclick="checkFlag(13, 'vlan10_gi0/1')">Submit Flag</button>
+</div>
+
+<div id="task14" class="task hidden">
+    <h3>Task 14: Secure SSH Access and Prevent Brute-Force Attacks</h3>
+    <p> Your task is to configure SSH access on the router for remote management. However, due to recent brute-force login attempts, you need to secure the SSH configuration by limiting the number of login attempts and enforcing a block time if too many failed attempts are made.</p>
+    <pre>
+      Router# configure terminal
+      Router(config)# hostname R1
+      Router(config)# ip domain-name example.com
+      Router(config)# username admin privilege 15 secret cisco123
+      Router(config)# crypto key generate rsa modulus 1024
+      Router(config)# ip ssh version 2
+      Router(config)# line vty 0 4
+      Router(config-line)# transport input ssh
+      Router(config-line)# login local
+      Router(config-line)# exit
+      Router(config)# ip ssh time-out 60
+      Router(config)# ip ssh authentication-retries 3
+      Router(config)# login block-for 120 attempts 3 within 60
+
+      What is the login block configuration applied to the router?
+    </pre>
+    <p class="flag">Flag 14: format {block_time_attempts_period}</p>
+    <input type="text" id="flag14" class="textbox" placeholder="Enter Flag 14">
+    <button class="btn" onclick="checkFlag(14, '120_3_60')">Submit Flag</button>
+</div>
+
+<div id="task15" class="task hidden">
+    <h3>Task 15: Analyze Packet Capture for Suspicious Activity</h3>
+    <p> Your security team has detected unusual activity involving a connection between an internal device and an external web server. You have been provided with a snippet from a packet capture. Your task is to analyze the packet details and identify the protocol and port number used for this communication.</p>
+    <pre>
+    Frame 100: 74 bytes on wire (592 bits), 74 bytes captured (592 bits)
+    Arrival Time: Sep 5, 2023 22:15:34.456738000 UTC
+    Source: 192.168.1.200 (192.168.1.200)
+    Destination: 203.0.113.50 (203.0.113.50)
+    Protocol: TCP
+    Source Port: 49160
+    Destination Port: 22
+    SSH: Client Protocol Request (Password Authentication)
+
+
+    What is the protocol and port number used for the communication in the packet?
+    </pre>
+    <p class="flag">Flag 15: format {protocol_port}</p>
+    <input type="text" id="flag15" class="textbox" placeholder="Enter Flag 15">
+    <button class="btn" onclick="checkFlag(15, 'SSH_22')">Submit Flag</button>
 </div>
 
 
