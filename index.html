@@ -1,86 +1,109 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Network CTF Challenge</title>
+    <title>Capture the Flag (CTF) Challenge: Network Troubleshooting and Configuration</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #eef2f7;
             color: #333;
         }
-        h1, h2 {
+        h1, h2, h3 {
+            color: #34495e;
             text-align: center;
-            color: #00509E;
         }
         .task {
             background-color: #fff;
-            border: 2px solid #00509E;
-            border-radius: 10px;
+            border: 1px solid #ccc;
             padding: 20px;
             margin-bottom: 20px;
-            display: none; /* Hidden until student unlocks it */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        .task.active {
-            display: block;
-        }
-        .task h3 {
-            color: #007BFF;
+        pre {
+            background-color: #f9f9f9;
+            border-left: 5px solid #3498db;
+            padding: 10px;
+            margin-bottom: 10px;
         }
         .flag {
-            color: #d9534f;
+            color: #e74c3c;
             font-weight: bold;
         }
+        .textbox {
+            display: block;
+            margin: 10px 0;
+            padding: 5px;
+            width: 100%;
+        }
         .btn {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-        .btn:hover {
-            background-color: #00509E;
+        .btn:disabled {
+            background-color: #7f8c8d;
         }
-        input[type="text"] {
-            padding: 10px;
-            width: 80%;
-            margin: 10px 0;
-            border: 2px solid #007BFF;
-            border-radius: 5px;
+        .hidden {
+            display: none;
         }
-        .network {
+        .visible {
+            display: block;
+        }
+        .network-header {
+            background-color: #2c3e50;
+            padding: 15px;
+            color: white;
             text-align: center;
-            margin: 20px 0;
+            border-radius: 10px;
         }
     </style>
+    <script>
+        function checkFlag(taskNumber, correctFlag) {
+            var inputFlag = document.getElementById('flag' + taskNumber).value;
+            if(inputFlag === correctFlag) {
+                document.getElementById('task' + (taskNumber + 1)).classList.remove('hidden');
+                alert('Correct Flag! Proceed to the next task.');
+            } else {
+                alert('Incorrect Flag. Try again!');
+            }
+        }
+    </script>
 </head>
 <body>
 
-<h1>Capture the Flag (CTF) Challenge: Network Configuration</h1>
-<p class="network">🔧 Secure and configure the network correctly to capture all flags! 🔧</p>
+<div class="network-header">
+    <h1>Capture the Flag (CTF) Challenge</h1>
+    <h2>Network Troubleshooting and Configuration</h2>
+</div>
 
-<!-- Task 1 -->
-<div class="task active" id="task1">
+<p>Welcome to the Network CTF Challenge! You are tasked with configuring and securing a network. Complete each task and enter the correct flag to unlock the next challenge. Good luck!</p>
+
+<div id="task1" class="task visible">
     <h3>Task 1: Enable and Encrypt Passwords</h3>
-    <p>Enable passwords and ensure they are encrypted in the configuration file to prevent them from being easily visible.</p>
+    <p>Enable passwords and ensure they are encrypted in the configuration file.</p>
     <pre>
 enable
 configure terminal
 enable secret [your-password]
 service password-encryption
     </pre>
-    <p class="flag">Flag 1: Use <code>show running-config</code> to verify the encryption is enabled.</p>
-    <label>Enter Flag 1:</label>
-    <input type="text" id="flag1" placeholder="Enter the correct flag here">
-    <button class="btn" onclick="checkFlag(1, 'encrypted_password')">Submit Flag 1</button>
+    <p class="flag">Flag 1: Use <code>show running-config</code> to verify the encryption.</p>
+    <input type="text" id="flag1" class="textbox" placeholder="Enter Flag 1">
+    <button class="btn" onclick="checkFlag(1, 'flag1_correct')">Submit Flag</button>
 </div>
 
-<!-- Task 2 -->
-<div class="task" id="task2">
+<div id="task2" class="task hidden">
     <h3>Task 2: Create VLANs</h3>
-    <p>Create VLANs 10, 20, and 30 for different departments in the company (e.g., HR, IT, and Finance).</p>
+    <p>Create VLANs for the different departments: HR (VLAN 10), IT (VLAN 20), and Finance (VLAN 30).</p>
     <pre>
 vlan 10
 name HR
@@ -90,29 +113,25 @@ vlan 30
 name Finance
 exit
     </pre>
-    <p class="flag">Flag 2: Verify the VLAN creation using <code>show vlan</code>.</p>
-    <label>Enter Flag 2:</label>
-    <input type="text" id="flag2" placeholder="Enter the correct flag here">
-    <button class="btn" onclick="checkFlag(2, 'vlan_configured')">Submit Flag 2</button>
+    <p class="flag">Flag 2: Verify VLAN creation using <code>show vlan</code>.</p>
+    <input type="text" id="flag2" class="textbox" placeholder="Enter Flag 2">
+    <button class="btn" onclick="checkFlag(2, 'flag2_correct')">Submit Flag</button>
 </div>
 
-<!-- Task 3 -->
-<div class="task" id="task3">
+<div id="task3" class="task hidden">
     <h3>Task 3: Configure Switchport Access</h3>
-    <p>Assign the access ports on the switch to their respective VLANs.</p>
+    <p>Assign the access ports to the appropriate VLANs.</p>
     <pre>
 interface range FastEthernet0/1 - 10
 switchport mode access
 switchport access vlan 10
     </pre>
-    <p class="flag">Flag 3: Verify the configuration using <code>show interfaces switchport</code>.</p>
-    <label>Enter Flag 3:</label>
-    <input type="text" id="flag3" placeholder="Enter the correct flag here">
-    <button class="btn" onclick="checkFlag(3, 'switchport_access')">Submit Flag 3</button>
+    <p class="flag">Flag 3: Verify the configuration with <code>show interfaces switchport</code>.</p>
+    <input type="text" id="flag3" class="textbox" placeholder="Enter Flag 3">
+    <button class="btn" onclick="checkFlag(3, 'flag3_correct')">Submit Flag</button>
 </div>
 
-<!-- Task 4 -->
-<div class="task" id="task4">
+<div id="task4" class="task hidden">
     <h3>Task 4: Trunk Configuration and Access Control</h3>
     <p>Configure trunk ports to allow specific VLANs and deny others.</p>
     <pre>
@@ -121,29 +140,25 @@ switchport mode trunk
 switchport trunk allowed vlan 10,20
 switchport trunk denied vlan 30
     </pre>
-    <p class="flag">Flag 4: Verify the trunk configuration using <code>show interfaces trunk</code>.</p>
-    <label>Enter Flag 4:</label>
-    <input type="text" id="flag4" placeholder="Enter the correct flag here">
-    <button class="btn" onclick="checkFlag(4, 'trunk_allowed')">Submit Flag 4</button>
+    <p class="flag">Flag 4: Verify the trunk configuration with <code>show interfaces trunk</code>.</p>
+    <input type="text" id="flag4" class="textbox" placeholder="Enter Flag 4">
+    <button class="btn" onclick="checkFlag(4, 'flag4_correct')">Submit Flag</button>
 </div>
 
-<!-- Task 5 -->
-<div class="task" id="task5">
+<div id="task5" class="task hidden">
     <h3>Task 5: Implement SNMP for Network Monitoring</h3>
-    <p>Enable and configure SNMP version 2c with a community string "public" for read-only access.</p>
+    <p>Enable SNMP version 2c with a community string "public" for read-only access.</p>
     <pre>
 snmp-server community public RO
     </pre>
     <p class="flag">Flag 5: Use <code>show snmp</code> to verify SNMP configuration.</p>
-    <label>Enter Flag 5:</label>
-    <input type="text" id="flag5" placeholder="Enter the correct flag here">
-    <button class="btn" onclick="checkFlag(5, 'snmp_configured')">Submit Flag 5</button>
+    <input type="text" id="flag5" class="textbox" placeholder="Enter Flag 5">
+    <button class="btn" onclick="checkFlag(5, 'flag5_correct')">Submit Flag</button>
 </div>
 
-<!-- Task 6 -->
-<div class="task" id="task6">
+<div id="task6" class="task hidden">
     <h3>Task 6: Implement Port Security</h3>
-    <p>Secure port FastEthernet0/5 by limiting the number of allowed MAC addresses to 1 and setting up violation action as <code>shutdown</code>.</p>
+    <p>Secure port FastEthernet0/5 by limiting the number of allowed MAC addresses and setting violation action to <code>shutdown</code>.</p>
     <pre>
 interface FastEthernet0/5
 switchport mode access
@@ -151,37 +166,22 @@ switchport port-security
 switchport port-security maximum 1
 switchport port-security violation shutdown
     </pre>
-    <p class="flag">Flag 6: Verify port security using <code>show port-security interface FastEthernet0/5</code>.</p>
-    <label>Enter Flag 6:</label>
-    <input type="text" id="flag6" placeholder="Enter the correct flag here">
-    <button class="btn" onclick="checkFlag(6, 'port_security_set')">Submit Flag 6</button>
+    <p class="flag">Flag 6: Verify port security with <code>show port-security interface FastEthernet0/5</code>.</p>
+    <input type="text" id="flag6" class="textbox" placeholder="Enter Flag 6">
+    <button class="btn" onclick="checkFlag(6, 'flag6_correct')">Submit Flag</button>
 </div>
 
-<!-- Task 7 -->
-<div class="task" id="task7">
-    <h3>Task 7: Prevent Brute Force Attacks on Password</h3>
-    <p>Set up login security to prevent brute force attacks by limiting the number of login attempts and introducing a login delay.</p>
+<div id="task7" class="task hidden">
+    <h3>Task 7: Prevent Brute Force Attacks</h3>
+    <p>Configure login security to prevent brute force attacks by limiting login attempts and adding a login delay.</p>
     <pre>
 line vty 0 4
 login block-for 120 attempts 3 within 60
     </pre>
-    <p class="flag">Flag 7: Verify the login settings using <code>show login</code>.</p>
-    <label>Enter Flag 7:</label>
-    <input type="text" id="flag7" placeholder="Enter the correct flag here">
-    <button class="btn" onclick="checkFlag(7, 'login_security_set')">Submit Flag 7</button>
+    <p class="flag">Flag 7: Verify login settings with <code>show login</code>.</p>
+    <input type="text" id="flag7" class="textbox" placeholder="Enter Flag 7">
+    <button class="btn" onclick="checkFlag(7, 'flag7_correct')">Submit Flag</button>
 </div>
-
-<script>
-    function checkFlag(taskNumber, correctFlag) {
-        var userFlag = document.getElementById('flag' + taskNumber).value;
-        if (userFlag === correctFlag) {
-            alert('Correct! Moving to the next task.');
-            document.getElementById('task' + (taskNumber + 1)).classList.add('active');
-        } else {
-            alert('Incorrect flag. Please try again.');
-        }
-    }
-</script>
 
 </body>
 </html>
