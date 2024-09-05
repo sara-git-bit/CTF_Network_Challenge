@@ -184,7 +184,7 @@ snmp-server
 
 <div id="task6" class="task hidden">
     <h3>Task 6: Implement Port Security</h3>
-    <p>Secure port FastEthernet0/5 by limiting the number of allowed MAC addresses and setting violation action to <code>shutdown</code>.</p>
+    <p>Secure port FastEthernet0/5 by limiting the number of allowed MAC addresses to 1 and setting violation action to <code>shutdown</code>.</p>
     <pre>
 interface FastEthernet0/5
 
@@ -196,7 +196,7 @@ interface FastEthernet0/5
 
 <div id="task7" class="task hidden">
     <h3>Task 7: Prevent Brute Force Attacks</h3>
-    <p>Configure login security to prevent brute force attacks by limiting login attempts and adding a login delay.</p>
+    <p>Configure login security to prevent brute force attacks by limiting login to 2 minutes attempts for 3 times in 60 seconds time window.</p>
     <pre>
 line vty 0 4
     </pre>
