@@ -79,24 +79,6 @@
             vertical-align: middle;
             margin-right: 10px;
         }
-        body::before {
-            content: '';
-            background-image: url('https://www.transparenttextures.com/patterns/squares.png');
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.05;
-            z-index: -1;
-        }
-        .task::before {
-            content: url('https://img.icons8.com/ios-filled/50/66fcf1/router.png');
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            opacity: 0.2;
-        }
         .scoreboard {
             background-color: #0b0c10;
             border: 1px solid #45a29e;
@@ -106,9 +88,6 @@
             margin-bottom: 20px;
             text-align: center;
         }
-        .scoreboard h3 {
-            color: #66fcf1;
-        }
         .clock {
             background-color: #0b0c10;
             border: 1px solid #45a29e;
@@ -117,6 +96,10 @@
             color: #f5f5f5;
             margin-top: 10px;
             text-align: center;
+        }
+        .score-list {
+            margin-top: 20px;
+            text-align: left;
         }
     </style>
     <script>
@@ -148,6 +131,11 @@
                 document.getElementById('task' + (taskNumber + 1)).classList.remove('hidden');
                 updateScore();
                 alert('Correct Flag! Proceed to the next task.');
+                // Automatically save score when the last task is completed
+                if (taskNumber === 15) {
+                    saveScore();
+                    showFinalScoreboard();
+                }
             } else {
                 alert('Incorrect Flag. Try again!');
             }
@@ -167,6 +155,35 @@
 
                 document.getElementById('clock').innerText = hours + ":" + minutes + ":" + seconds;
             }, 1000);
+        }
+
+        function saveScore() {
+            let elapsedTimeFormatted = document.getElementById('clock').innerText;
+            let existingScores = JSON.parse(localStorage.getItem('scores')) || [];
+            let newScore = { name: playerName, score: score, time: elapsedTimeFormatted };
+
+            existingScores.push(newScore);
+            localStorage.setItem('scores', JSON.stringify(existingScores));
+
+            displayScores();
+        }
+
+        function displayScores() {
+            let scoreBoard = document.getElementById('scoreList');
+            let scores = JSON.parse(localStorage.getItem('scores')) || [];
+            scoreBoard.innerHTML = '<h3>All Players\' Scores:</h3>';
+
+            scores.forEach(function (entry, index) {
+                scoreBoard.innerHTML += `<p>${index + 1}. ${entry.name} - Score: ${entry.score}, Time: ${entry.time}</p>`;
+            });
+        }
+
+        function showFinalScoreboard() {
+            document.getElementById('finalScoreboard').classList.remove('hidden');
+        }
+
+        window.onload = function() {
+            displayScores(); // Display existing scores on page load
         }
     </script>
 </head>
@@ -195,8 +212,7 @@
     </div>
 </div>
 
-<p>Welcome to the Network CTF Challenge! You are tasked with configuring and securing a network. Complete each task and enter the correct flag to unlock the next challenge. Good luck!</p>
-
+<!-- Task 1 -->
 <div id="task1" class="task hidden">
     <h3>Task 1: Enable and Encrypt Passwords</h3>
     <p>Enable passwords and ensure they are encrypted in the configuration file.</p>
@@ -382,7 +398,7 @@ line vty 0 4
 
        What is the IP address of the attacker??
     </pre>
-    <p class="flag">Flag 11: format {issue}</p>
+    <p class="flag">Flag 11: format {IP address}</p>
     <input type="text" id="flag11" class="textbox" placeholder="Enter Flag 11">
     <button class="btn" onclick="checkFlag(11, '192.168.1.100')">Submit Flag</button>
 </div>
@@ -464,6 +480,12 @@ line vty 0 4
     <p class="flag">Flag 15: format {protocol_port}</p>
     <input type="text" id="flag15" class="textbox" placeholder="Enter Flag 15">
     <button class="btn" onclick="checkFlag(15, 'SSH_22')">Submit Flag</button>
+</div>
+
+<!-- Final Scoreboard -->
+<div id="finalScoreboard" class="scoreboard hidden">
+    <h3>Final Scoreboard</h3>
+    <div id="scoreList" class="score-list"></div>
 </div>
 
 
