@@ -7,71 +7,72 @@
     <title>Capture the Flag (CTF) Challenge: Network Troubleshooting and Configuration</title>
     <style>
         body {
-            font-family: 'Courier New', Courier, monospace;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
             margin: 20px;
-            background-color: #0d1b2a;
-            color: #e0e1dd;
         }
         h1, h2, h3 {
-            color: #ffcc00;
-        }
-        h1 {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-        }
-        pre {
-            background-color: #1b263b;
-            color: #c5c6c7;
-            padding: 15px;
-            border: 2px solid #4a6fa5;
-            border-radius: 10px;
-            overflow: auto;
+            color: #005b96;
         }
         .task {
-            background-color: #1b263b;
-            border: 2px solid #4a6fa5;
+            background-color: #e1f5fe;
+            border: 2px solid #0288d1;
+            border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
         }
         .flag {
-            color: #66fcf1;
+            color: #d9534f;
             font-weight: bold;
-            font-size: 1.1em;
+        }
+        pre {
+            background-color: #eeeeee;
+            border: 1px solid #0288d1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow: auto;
+            color: #2e3b4e;
+        }
+        .textbox {
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #0288d1;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 300px;
+        }
+        .submit-btn {
+            background-color: #0288d1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #026b9e;
         }
         footer {
-            margin-top: 50px;
             text-align: center;
-            color: #c5c6c7;
-            font-size: 0.9em;
-        }
-        .network-theme {
-            background-image: url('https://i.imgur.com/3rTSe1b.png');
-            background-size: cover;
-            background-blend-mode: multiply;
-            padding: 50px;
-            border-radius: 10px;
+            margin-top: 40px;
+            color: #777;
         }
     </style>
 </head>
 <body>
 
-<div class="network-theme">
-    <h1>Capture the Flag (CTF) Challenge</h1>
-    <h2>Network Troubleshooting and Configuration</h2>
-</div>
-
-<p>Welcome to the CTF Challenge! Your goal is to complete the following network configuration and troubleshooting tasks on a Cisco-like switch and router environment. Each completed task will provide you with a flag that will help you unlock the next challenge.</p>
+<h1>Capture the Flag (CTF) Challenge: Network Troubleshooting and Configuration</h1>
+<p>Welcome to the CTF Challenge! You are the network administrator responsible for configuring and securing the network. Complete each task and enter the correct flag to proceed.</p>
 
 <h2>Scenario:</h2>
-<p>You are the network administrator of a medium-sized company. The company has experienced multiple security issues, including brute force attacks, misconfigured VLANs, and weak passwords. Your goal is to ensure the network is secure and properly configured by performing the following tasks.</p>
+<p>Your company has experienced various network issues and security concerns. Your job is to troubleshoot, configure, and secure the network devices. For each task, after successfully configuring the network, enter the flag that confirms you've completed it correctly.</p>
 
 <div class="task">
     <h3>Task 1: Enable and Encrypt Passwords</h3>
-    <p>Enable passwords and ensure they are encrypted in the configuration file to prevent them from being easily visible.</p>
+    <p>Enable passwords and ensure they are encrypted in the configuration file.</p>
     <pre>
 enable
 configure terminal
@@ -79,11 +80,13 @@ enable secret [your-password]
 service password-encryption
     </pre>
     <p class="flag">Flag 1: Use <code>show running-config</code> to verify the encryption is enabled.</p>
+    <label for="flag1">Enter Flag 1:</label>
+    <input type="text" id="flag1" class="textbox" placeholder="Enter Flag 1 here">
 </div>
 
 <div class="task">
     <h3>Task 2: Create VLANs</h3>
-    <p>Create VLANs 10, 20, and 30 for different departments in the company (e.g., HR, IT, and Finance).</p>
+    <p>Create VLANs 10, 20, and 30 for different departments (HR, IT, Finance).</p>
     <pre>
 vlan 10
 name HR
@@ -93,7 +96,9 @@ vlan 30
 name Finance
 exit
     </pre>
-    <p class="flag">Flag 2: Verify the VLAN creation using <code>show vlan</code>.</p>
+    <p class="flag">Flag 2: Verify VLANs using <code>show vlan</code>.</p>
+    <label for="flag2">Enter Flag 2:</label>
+    <input type="text" id="flag2" class="textbox" placeholder="Enter Flag 2 here">
 </div>
 
 <div class="task">
@@ -104,7 +109,9 @@ interface range FastEthernet0/1 - 10
 switchport mode access
 switchport access vlan 10
     </pre>
-    <p class="flag">Flag 3: Verify the configuration using <code>show interfaces switchport</code>.</p>
+    <p class="flag">Flag 3: Verify using <code>show interfaces switchport</code>.</p>
+    <label for="flag3">Enter Flag 3:</label>
+    <input type="text" id="flag3" class="textbox" placeholder="Enter Flag 3 here">
 </div>
 
 <div class="task">
@@ -116,21 +123,25 @@ switchport mode trunk
 switchport trunk allowed vlan 10,20
 switchport trunk denied vlan 30
     </pre>
-    <p class="flag">Flag 4: Verify the trunk configuration using <code>show interfaces trunk</code>.</p>
+    <p class="flag">Flag 4: Verify using <code>show interfaces trunk</code>.</p>
+    <label for="flag4">Enter Flag 4:</label>
+    <input type="text" id="flag4" class="textbox" placeholder="Enter Flag 4 here">
 </div>
 
 <div class="task">
     <h3>Task 5: Implement SNMP for Network Monitoring</h3>
-    <p>Enable and configure SNMP version 2c with a community string "public" for read-only access.</p>
+    <p>Enable SNMP version 2c with a community string "public" for read-only access.</p>
     <pre>
 snmp-server community public RO
     </pre>
-    <p class="flag">Flag 5: Use <code>show snmp</code> to verify SNMP configuration.</p>
+    <p class="flag">Flag 5: Use <code>show snmp</code> to verify.</p>
+    <label for="flag5">Enter Flag 5:</label>
+    <input type="text" id="flag5" class="textbox" placeholder="Enter Flag 5 here">
 </div>
 
 <div class="task">
     <h3>Task 6: Implement Port Security</h3>
-    <p>Secure port FastEthernet0/5 by limiting the number of allowed MAC addresses to 1 and setting up violation action as <code>shutdown</code>.</p>
+    <p>Secure port FastEthernet0/5 by limiting the number of allowed MAC addresses to 1 and setting the violation action to shutdown.</p>
     <pre>
 interface FastEthernet0/5
 switchport mode access
@@ -138,21 +149,25 @@ switchport port-security
 switchport port-security maximum 1
 switchport port-security violation shutdown
     </pre>
-    <p class="flag">Flag 6: Verify port security using <code>show port-security interface FastEthernet0/5</code>.</p>
+    <p class="flag">Flag 6: Verify using <code>show port-security interface FastEthernet0/5</code>.</p>
+    <label for="flag6">Enter Flag 6:</label>
+    <input type="text" id="flag6" class="textbox" placeholder="Enter Flag 6 here">
 </div>
 
 <div class="task">
     <h3>Task 7: Prevent Brute Force Attacks on Password</h3>
-    <p>Set up login security to prevent brute force attacks by limiting the number of login attempts and introducing a login delay.</p>
+    <p>Set up login security to prevent brute force attacks by limiting the number of login attempts.</p>
     <pre>
 line vty 0 4
 login block-for 120 attempts 3 within 60
     </pre>
-    <p class="flag">Flag 7: Verify the login settings using <code>show login</code>.</p>
+    <p class="flag">Flag 7: Verify using <code>show login</code>.</p>
+    <label for="flag7">Enter Flag 7:</label>
+    <input type="text" id="flag7" class="textbox" placeholder="Enter Flag 7 here">
 </div>
 
 <footer>
-    <p>&copy; 2024 Network CTF Challenge. All Rights Reserved.</p>
+    <p>Good luck securing the network!</p>
 </footer>
 
 </body>
