@@ -119,11 +119,12 @@ exit
     <h3>Task 3: Configure Switchport Access</h3>
     <p>Assign the access ports to the appropriate VLANs. Assign port f0/2 to f0/3 to vlan 10, port f0/4 to f0/5 to vlan 20 and port f0/6 to f0/7 to vlan 30 </p>
     <pre>
+interface range f0/1-2 , interface range f0/3-4, interface range f0/5-6
 switchport mode [type of mode]
     </pre>
     <p class="flag">Flag 3: Use correct <commands> to configure the access.</p>
     <input type="textarea" id="flag3" class="textbox" placeholder="Enter Flag 3">
-    <button class="btn" onclick="checkFlag(3, 'int range f0/1-2 switchport mode access switchport access vlan 10 int range f0/4-5 switchport mode access switchport access vlan 20 int range f0/6-7 switchport mode access switchport access vlan 30')">Submit Flag</button>
+    <button class="btn" onclick="checkFlag(3, 'switchport mode access switchport access vlan 10 switchport mode access switchport access vlan 20 switchport mode access switchport access vlan 30')">Submit Flag</button>
 </div>
 
 <div id="task4" class="task hidden">
