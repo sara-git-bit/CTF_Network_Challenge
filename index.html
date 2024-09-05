@@ -91,14 +91,11 @@
     <h3>Task 1: Enable and Encrypt Passwords</h3>
     <p>Enable passwords and ensure they are encrypted in the configuration file.</p>
     <pre>
-enable
-configure terminal
-enable secret [your-password]
-service password-encryption
+enable password [your-password]
     </pre>
-    <p class="flag">Flag 1: Use <code>show running-config</code> to verify the encryption.</p>
+    <p class="flag">Flag 1: Use correct <commands> to verify the encryption.</p>
     <input type="text" id="flag1" class="textbox" placeholder="Enter Flag 1">
-    <button class="btn" onclick="checkFlag(1, 'flag1_correct')">Submit Flag</button>
+    <button class="btn" onclick="checkFlag(1, 'service password-encryption')">Submit Flag</button>
 </div>
 
 <div id="task2" class="task hidden">
@@ -113,22 +110,20 @@ vlan 30
 name Finance
 exit
     </pre>
-    <p class="flag">Flag 2: Verify VLAN creation using <code>show vlan</code>.</p>
+    <p class="flag">Flag 2: Use correct <commands> to configure all the vlans.</p>
     <input type="text" id="flag2" class="textbox" placeholder="Enter Flag 2">
-    <button class="btn" onclick="checkFlag(2, 'flag2_correct')">Submit Flag</button>
+    <button class="btn" onclick="checkFlag(2, 'vlan 10 name HR vlan 20 name IT vlan 30 name Finance')">Submit Flag</button>
 </div>
 
 <div id="task3" class="task hidden">
     <h3>Task 3: Configure Switchport Access</h3>
-    <p>Assign the access ports to the appropriate VLANs.</p>
+    <p>Assign the access ports to the appropriate VLANs. Assign port f0/2 to f0/3 to vlan 10, port f0/4 to f0/5 to vlan 20 and port f0/6 to f0/7 to vlan 30 </p>
     <pre>
-interface range FastEthernet0/1 - 10
-switchport mode access
-switchport access vlan 10
+switchport mode [type of mode]
     </pre>
-    <p class="flag">Flag 3: Verify the configuration with <code>show interfaces switchport</code>.</p>
+    <p class="flag">Flag 3: Use correct <commands> to configure the access.</p>
     <input type="text" id="flag3" class="textbox" placeholder="Enter Flag 3">
-    <button class="btn" onclick="checkFlag(3, 'flag3_correct')">Submit Flag</button>
+    <button class="btn" onclick="checkFlag(3, 'int range f0/1-2 switchport mode access switchport access vlan 10 int range f0/4-5 switchport mode access switchport access vlan 20 int range f0/6-7 switchport mode access switchport access vlan 30 ')">Submit Flag</button>
 </div>
 
 <div id="task4" class="task hidden">
@@ -136,24 +131,21 @@ switchport access vlan 10
     <p>Configure trunk ports to allow specific VLANs and deny others.</p>
     <pre>
 interface GigabitEthernet0/1
-switchport mode trunk
-switchport trunk allowed vlan 10,20
-switchport trunk denied vlan 30
     </pre>
-    <p class="flag">Flag 4: Verify the trunk configuration with <code>show interfaces trunk</code>.</p>
+    <p class="flag">Flag 4: Use correct <commands> to configure trunk.</p>
     <input type="text" id="flag4" class="textbox" placeholder="Enter Flag 4">
-    <button class="btn" onclick="checkFlag(4, 'flag4_correct')">Submit Flag</button>
+    <button class="btn" onclick="checkFlag(4, 'switchport mode trunk switchport trunk allowed vlan 10,20 switchport trunk denied vlan 30')">Submit Flag</button>
 </div>
 
 <div id="task5" class="task hidden">
     <h3>Task 5: Implement SNMP for Network Monitoring</h3>
     <p>Enable SNMP version 2c with a community string "public" for read-only access.</p>
     <pre>
-snmp-server community public RO
+snmp-server 
     </pre>
-    <p class="flag">Flag 5: Use <code>show snmp</code> to verify SNMP configuration.</p>
+    <p class="flag">Flag 5: Use correct <commands> to configure the SNMP.</p>
     <input type="text" id="flag5" class="textbox" placeholder="Enter Flag 5">
-    <button class="btn" onclick="checkFlag(5, 'flag5_correct')">Submit Flag</button>
+    <button class="btn" onclick="checkFlag(5, 'community public RO')">Submit Flag</button>
 </div>
 
 <div id="task6" class="task hidden">
@@ -161,14 +153,11 @@ snmp-server community public RO
     <p>Secure port FastEthernet0/5 by limiting the number of allowed MAC addresses and setting violation action to <code>shutdown</code>.</p>
     <pre>
 interface FastEthernet0/5
-switchport mode access
-switchport port-security
-switchport port-security maximum 1
-switchport port-security violation shutdown
+
     </pre>
-    <p class="flag">Flag 6: Verify port security with <code>show port-security interface FastEthernet0/5</code>.</p>
+    <p class="flag">Flag 6: Use correct <commands> to configure port-security.</p>
     <input type="text" id="flag6" class="textbox" placeholder="Enter Flag 6">
-    <button class="btn" onclick="checkFlag(6, 'flag6_correct')">Submit Flag</button>
+    <button class="btn" onclick="checkFlag(6, 'switchport mode access switchport port-security switchport port-security maximum 1 switchport port-security violation shutdown')">Submit Flag</button>
 </div>
 
 <div id="task7" class="task hidden">
@@ -176,11 +165,10 @@ switchport port-security violation shutdown
     <p>Configure login security to prevent brute force attacks by limiting login attempts and adding a login delay.</p>
     <pre>
 line vty 0 4
-login block-for 120 attempts 3 within 60
     </pre>
-    <p class="flag">Flag 7: Verify login settings with <code>show login</code>.</p>
+    <p class="flag">Flag 7: Use correct <commands> to prevent the brute force attacks.</p>
     <input type="text" id="flag7" class="textbox" placeholder="Enter Flag 7">
-    <button class="btn" onclick="checkFlag(7, 'flag7_correct')">Submit Flag</button>
+    <button class="btn" onclick="checkFlag(7, 'login block-for 120 attempts 3 within 60')">Submit Flag</button>
 </div>
 
 </body>
