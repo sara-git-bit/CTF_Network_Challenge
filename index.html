@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capture the Flag (CTF) Challenge: Network Troubleshooting and Configuration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        pre {
+            background-color: #eee;
+            padding: 10px;
+            border: 1px solid #ccc;
+            overflow: auto;
+        }
+        .task {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .flag {
+            color: #d9534f;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Capture the Flag (CTF) Challenge: Network Troubleshooting and Configuration</h1>
+
+<p>Welcome to the CTF Challenge! Your goal is to complete the following network configuration and troubleshooting tasks on a Cisco-like switch and router environment. Each completed task will provide you with a flag that will help you unlock the next challenge.</p>
+
+<h2>Scenario:</h2>
+<p>You are the network administrator of a medium-sized company. The company has experienced multiple security issues, including brute force attacks, misconfigured VLANs, and weak passwords. Your goal is to ensure the network is secure and properly configured by performing the following tasks.</p>
+
+<div class="task">
+    <h3>Task 1: Enable and Encrypt Passwords</h3>
+    <p>Enable passwords and ensure they are encrypted in the configuration file to prevent them from being easily visible.</p>
+    <pre>
+enable
+configure terminal
+enable secret [your-password]
+service password-encryption
+    </pre>
+    <p class="flag">Flag 1: Use <code>show running-config</code> to verify the encryption is enabled.</p>
+</div>
+
+<div class="task">
+    <h3>Task 2: Create VLANs</h3>
+    <p>Create VLANs 10, 20, and 30 for different departments in the company (e.g., HR, IT, and Finance).</p>
+    <pre>
+vlan 10
+name HR
+vlan 20
+name IT
+vlan 30
+name Finance
+exit
+    </pre>
+    <p class="flag">Flag 2: Verify the VLAN creation using <code>show vlan</code>.</p>
+</div>
+
+<div class="task">
+    <h3>Task 3: Configure Switchport Access</h3>
+    <p>Assign the access ports on the switch to their respective VLANs.</p>
+    <pre>
+interface range FastEthernet0/1 - 10
+switchport mode access
+switchport access vlan 10
+    </pre>
+    <p class="flag">Flag 3: Verify the configuration using <code>show interfaces switchport</code>.</p>
+</div>
+
+<div class="task">
+    <h3>Task 4: Trunk Configuration and Access Control</h3>
+    <p>Configure trunk ports to allow specific VLANs and deny others.</p>
+    <pre>
+interface GigabitEthernet0/1
+switchport mode trunk
+switchport trunk allowed vlan 10,20
+switchport trunk denied vlan 30
+    </pre>
+    <p class="flag">Flag 4: Verify the trunk configuration using <code>show interfaces trunk</code>.</p>
+</div>
+
+<div class="task">
+    <h3>Task 5: Implement SNMP for Network Monitoring</h3>
+    <p>Enable and configure SNMP version 2c with a community string "public" for read-only access.</p>
+    <pre>
+snmp-server community public RO
+    </pre>
+    <p class="flag">Flag 5: Use <code>show snmp</code> to verify SNMP configuration.</p>
+</div>
+
+<div class="task">
+    <h3>Task 6: Implement Port Security</h3>
+    <p>Secure port FastEthernet0/5 by limiting the number of allowed MAC addresses to 1 and setting up violation action as <code>shutdown</code>.</p>
+    <pre>
+interface FastEthernet0/5
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security violation shutdown
+    </pre>
+    <p class="flag">Flag 6: Verify port security using <code>show port-security interface FastEthernet0/5</code>.</p>
+</div>
+
+<div class="task">
+    <h3>Task 7: Prevent Brute Force Attacks on Password</h3>
+    <p>Set up login security to prevent brute force attacks by limiting the number of login attempts and introducing a login delay.</p>
+    <pre>
+line vty 0 4
+login block-for 120 attempts 3 within 60
+    </pre>
+    <p class="flag">Flag 7: Verify the login settings using <code>show login</code>.</p>
+</div>
+
+</body>
+</html>
