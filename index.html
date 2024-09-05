@@ -177,7 +177,7 @@ interface GigabitEthernet0/1
     <pre>
 snmp-server 
     </pre>
-    <p class="flag">Flag 5: Use correct <commands> to configure the SNMP.</p>
+    <p class="flag">Flag 5: Use the correct <commands> to configure the SNMP.</p>
     <input type="text" id="flag5" class="textbox" placeholder="Enter Flag 5">
     <button class="btn" onclick="checkFlag(5, 'community public RO')">Submit Flag</button>
 </div>
@@ -189,7 +189,7 @@ snmp-server
 interface FastEthernet0/5
 
     </pre>
-    <p class="flag">Flag 6: Use correct <commands> to configure port-security.</p>
+    <p class="flag">Flag 6: Use the correct <commands> to configure port-security.</p>
     <input type="text" id="flag6" class="textbox" placeholder="Enter Flag 6">
     <button class="btn" onclick="checkFlag(6, 'switchport mode access switchport port-security switchport port-security maximum 1 switchport port-security violation shutdown')">Submit Flag</button>
 </div>
@@ -200,7 +200,7 @@ interface FastEthernet0/5
     <pre>
 line vty 0 4
     </pre>
-    <p class="flag">Flag 7: Use correct <commands> to prevent the brute force attacks.</p>
+    <p class="flag">Flag 7: Use the correct <commands> to prevent the brute force attacks.</p>
     <input type="text" id="flag7" class="textbox" placeholder="Enter Flag 7">
     <button class="btn" onclick="checkFlag(7, 'login block-for 120 attempts 3 within 60')">Submit Flag</button>
 </div>
@@ -250,7 +250,7 @@ line vty 0 4
     <p>A company has implemented a new network using VLANs to segment traffic. However, devices in VLAN 10 cannot communicate with devices in VLAN 20, even though inter-VLAN routing has been configured on the router.
     our task is to analyze the configuration and identify the issue preventing communication between VLANs.</p>
     <pre>
-      Switch# show running-config
+            Switch# show running-config
             !
             interface FastEthernet0/1
              switchport mode access
@@ -317,7 +317,7 @@ line vty 0 4
       Switch# configure terminal
       Switch(config)# interface fa0/1
 
-       What command that is used to disable an unused port?
+      What command that is used to disable an unused port?
     </pre>
     <p class="flag">Flag 12: format {commmand}</p>
     <input type="text" id="flag12" class="textbox" placeholder="Enter Flag 12">
