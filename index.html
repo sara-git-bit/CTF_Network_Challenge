@@ -209,12 +209,107 @@ line vty 0 4
     <h3>Task 8: Analyze the packet</h3>
     <p>You have intercepted some network traffic in the form of a packet capture file (network_traffic.pcap). Your task is to find the port and protocol used by a specific IP address in the network.</p>
     <pre>
+        Frame 1: 74 bytes on wire (592 bits), 74 bytes captured (592 bits)
+        Arrival Time: Sep 4, 2023 14:45:02.458738000 UTC
+        Source: 192.168.1.100 (192.168.1.100)
+        Destination: 93.184.216.34 (example.com)
+        Protocol: TCP
+        Source Port: 49152
+        Destination Port: 80
+        HTTP Request: GET /index.html HTTP/1.1
+
             What is the port number and the protocol used by the IP address 192.168.1.100?
     </pre>
     <p class="flag">Flag 8: format {port_protocol}</p>
-    <input type="text" id="flag7" class="textbox" placeholder="Enter Flag 7">
-    <button class="btn" onclick="checkFlag(8, '80_HTTP')">Submit Flag</button>
+    <input type="text" id="flag8" class="textbox" placeholder="Enter Flag 8">
+    <button class="btn" onclick="checkFlag(8, '80_Transport Control Protocol')">Submit Flag</button>
 </div>
+
+    <div id="task9" class="task hidden">
+    <h3>Task 9: Detect a Brute-Force Attack</h3>
+    <p>Your task is to detect a brute-force attack based on the repetitive login attempts and identify the IP address that was responsible for the attack.</p>
+    <pre>
+        [2024-09-05 14:12:34] - IP: 192.168.1.100 - Login attempt failed
+        [2024-09-05 14:12:36] - IP: 192.168.1.100 - Login attempt failed
+        [2024-09-05 14:12:38] - IP: 192.168.1.50 - Login attempt failed
+        [2024-09-05 14:12:40] - IP: 192.168.1.50 - Login attempt failed
+        [2024-09-05 14:12:42] - IP: 192.168.1.200 - Login attempt failed
+        [2024-09-05 14:12:44] - IP: 192.168.1.50 - Login attempt failed
+        [2024-09-05 14:12:46] - IP: 192.168.1.50 - Login attempt failed
+        [2024-09-05 14:12:48] - IP: 192.168.1.50 - Login attempt failed
+
+            What is the IP address responsible for the brute-force attack?
+    </pre>
+    <p class="flag">Flag 9: format {IP Address}</p>
+    <input type="text" id="flag9" class="textbox" placeholder="Enter Flag 9">
+    <button class="btn" onclick="checkFlag(9, '192.168.1.50')">Submit Flag</button>
+</div>
+
+    <div id="task10" class="task hidden">
+    <h3>Task 10: Troubleshoot VLAN Communication</h3>
+    <p>A company has implemented a new network using VLANs to segment traffic. However, devices in VLAN 10 cannot communicate with devices in VLAN 20, even though inter-VLAN routing has been configured on the router.
+    our task is to analyze the configuration and identify the issue preventing communication between VLANs.</p>
+    <pre>
+      Switch# show running-config
+            !
+            interface FastEthernet0/1
+             switchport mode access
+             switchport access vlan 10
+            !
+            interface FastEthernet0/2
+             switchport mode access
+             switchport access vlan 20
+            !
+            interface GigabitEthernet0/1
+             switchport mode trunk
+             switchport trunk allowed vlan 10,20
+             switchport trunk native vlan 1
+            !
+            
+            Switch# show interfaces trunk
+            Port        Mode         Encapsulation  Status        Native vlan
+            Gi0/1       on           802.1q         trunking      1
+            
+            Port        Vlans allowed on trunk
+            Gi0/1       10,20
+            
+            Port        Vlans in spanning tree forwarding state and not pruned
+            Gi0/1       none
+            
+            Switch# show vlan brief
+            VLAN Name                             Status    Ports
+            ---- -------------------------------- --------- -------------------------------
+            1    default                          active    Fa0/3, Fa0/4
+            10   VLAN0010                         active    Fa0/1
+            20   VLAN0020                         active    Fa0/2
+
+
+           What is the misconfiguration preventing VLAN 10 and VLAN 20 from communicating?
+    </pre>
+    <p class="flag">Flag 10: format {Iissue}</p>
+    <input type="text" id="flag10" class="textbox" placeholder="Enter Flag 10">
+    <button class="btn" onclick="checkFlag(10, 'vlan_pruning')">Submit Flag</button>
+</div>
+
+    <div id="task11" class="task hidden">
+    <h3>Task 11: Detect a Man-in-the-Middle Attack</h3>
+    <p>Your security team has noticed unusual activity on the network, where sensitive data seems to have been intercepted and modified during transmission. You suspect a Man-in-the-Middle (MITM) attack might be occurring. Your task is to analyze the network traffic logs and identify the attacker's IP address.</p>
+    <pre>
+      Switch# show running-config
+      Frame 1: 60 bytes on wire (480 bits)
+    Source: Attacker (00:0a:95:9d:68:16)
+    Destination: Broadcast (ff:ff:ff:ff:ff:ff)
+    Protocol: ARP
+    ARP: Who has 192.168.1.1? Tell 192.168.1.100
+    [Duplicate IP address detected: 192.168.1.1 is also at 00:0a:95:9d:68:16]
+
+           What is the IP address of the attacker??
+    </pre>
+    <p class="flag">Flag 11: format {Iissue}</p>
+    <input type="text" id="flag11" class="textbox" placeholder="Enter Flag 11">
+    <button class="btn" onclick="checkFlag(11, '192.168.1.100')">Submit Flag</button>
+</div>
+
 
 </body>
 </html>
